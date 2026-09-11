@@ -1,0 +1,23 @@
+{
+  "name": "wigo-admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "WIGO Phase 1 Pilot — admin dashboard + WhatsApp/N1CO integration layer, rebuilt against a real backend.",
+  "workspaces": [
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace server && npm run build --workspace web",
+    "typecheck": "npm run typecheck --workspace server && npm run typecheck --workspace web",
+    "test": "npm run test --workspace server && npm run test --workspace web",
+    "dev:server": "npm run dev --workspace server",
+    "dev:web": "npm run dev --workspace web",
+    "smoke": "node scripts/smoke-test.mjs",
+    "secret-scan": "node scripts/secret-scan.mjs",
+    "verify": "npm run secret-scan && npm run typecheck && npm run test && npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
