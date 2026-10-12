@@ -4,6 +4,14 @@
  * secrets committed"). Missing values fall back to safe dev defaults so the app boots
  * on the deterministic fakes with zero real credentials.
  */
+import dotenv from 'dotenv';
+
+// Load server/.env for local and staging runs. Skipped under Vitest so a local .env can
+// never bleed into tests, and dotenv never overrides variables already set by the
+// platform/shell (so container env and the smoke test's explicit env always win).
+if (!process.env.VITEST) {
+  dotenv.config();
+}
 
 function str(key: string, fallback = ''): string {
   const v = process.env[key];
